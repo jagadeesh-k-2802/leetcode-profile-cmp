@@ -29,11 +29,13 @@ kotlin {
     
     sourceSets {
         androidMain.dependencies {
+            // Compose
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
 
         commonMain.dependencies {
+            // Compose
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
@@ -42,9 +44,17 @@ kotlin {
             implementation(compose.components.uiToolingPreview)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtimeCompose)
+
+            // Navigation
+            implementation(libs.androidx.navigation.navigationCompose)
+
+            // Coil
+            implementation(libs.coil.compose)
+            implementation(libs.coil.network.okhttp)
         }
 
         commonTest.dependencies {
+            // Testing
             implementation(libs.kotlin.test)
         }
     }
@@ -52,12 +62,12 @@ kotlin {
 
 android {
     namespace = "org.jagadeesh.leetcode"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "org.jagadeesh.leetcode"
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        minSdk = 24
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0.0"
     }

@@ -1,0 +1,9 @@
+<resources>
+    <!-- SetupPage -->
+    <string name="text_welcome">Welcome to LeetCode Profile</string>
+    <string name="text_track_and_improve">Track and improve your LeetCode progress</string>
+    <string name="label_enter_username">Enter LeetCode Username</string>
+
+    <!-- Common:Labels -->
+    <string name="label_continue">Continue</string>
+</resources>
