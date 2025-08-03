@@ -1,14 +1,26 @@
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
+    targets.configureEach {
+        compilations.configureEach {
+            compilerOptions.configure {
+                freeCompilerArgs.addAll("-opt-in=kotlin.ExperimentalUnsignedTypes,kotlin.RequiresOptIn", "-Xexpect-actual-classes")
+            }
+        }
+    }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -22,7 +34,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ComposeApp"
+            baseName = "LeetCodeApp"
             isStatic = true
         }
     }
@@ -32,6 +44,19 @@ kotlin {
             // Compose
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // Ktor
+            implementation(libs.ktor.client.okhttp)
+        }
+
+        iosMain.dependencies {
+            // Ktor
+            implementation(libs.ktor.client.darwin)
+        }
+
+        jvmMain.dependencies {
+            // Ktor
+            implementation(libs.ktor.client.java)
         }
 
         commonMain.dependencies {
@@ -48,9 +73,27 @@ kotlin {
             // Navigation
             implementation(libs.androidx.navigation.navigationCompose)
 
+            // Koin
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.compose.viewmodel)
+            implementation(libs.koin.compose.viewmodel.navigation)
+            api(libs.koin.annotations)
+
+            // Ktor
+            implementation(libs.bundles.ktor.common)
+
             // Coil
+            implementation(libs.coil.compose.core)
             implementation(libs.coil.compose)
-            implementation(libs.coil.network.okhttp)
+            implementation(libs.coil)
+            implementation(libs.coil.network.ktor)
+
+            // Storage
+            implementation(libs.androidx.datastore.preferences)
+
+            // Serialization
+            implementation(libs.kotlinx.serialization.json)
         }
 
         commonTest.dependencies {
@@ -58,16 +101,35 @@ kotlin {
             implementation(libs.kotlin.test)
         }
     }
+
+    sourceSets.named("commonMain").configure {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+    }
+}
+
+ksp {
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
+    arg("KOIN_CONFIG_CHECK","true")
+}
+
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+}
+
+project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
 }
 
 android {
-    namespace = "org.jagadeesh.leetcode"
-    compileSdk = 35
+    namespace = "org.jackappsdev.leetcode"
+    compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.jagadeesh.leetcode"
+        applicationId = "org.jackappsdev.leetcode"
         minSdk = 24
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
     }
