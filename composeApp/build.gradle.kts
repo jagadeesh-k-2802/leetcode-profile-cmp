@@ -34,7 +34,7 @@ kotlin {
         iosSimulatorArm64()
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "LeetCodeApp"
+            baseName = "ComposeApp"
             isStatic = true
         }
     }
@@ -94,6 +94,9 @@ kotlin {
 
             // Serialization
             implementation(libs.kotlinx.serialization.json)
+
+            // Compose Cupertino
+            implementation(libs.cupertino)
         }
 
         commonTest.dependencies {

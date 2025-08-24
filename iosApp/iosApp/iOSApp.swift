@@ -1,5 +1,5 @@
 import SwiftUI
-import LeetCodeApp
+import ComposeApp
 
 @main
 struct iOSApp: App {

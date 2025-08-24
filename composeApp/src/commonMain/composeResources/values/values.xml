@@ -4,6 +4,12 @@
     <string name="text_track_and_improve">Track and improve your LeetCode progress</string>
     <string name="label_enter_username">Enter LeetCode Username</string>
 
+    <!-- MainPage -->
+    <string name="text_home">Home</string>
+    <string name="text_search">Search</string>
+    <string name="text_friends">Friends</string>
+
     <!-- Common:Labels -->
     <string name="label_continue">Continue</string>
+    <string name="text_error">Something Went Wrong!</string>
 </resources>

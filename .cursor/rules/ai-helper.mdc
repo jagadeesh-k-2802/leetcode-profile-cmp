@@ -1,0 +1,41 @@
+---
+description: AI Helper for this Codebase
+alwaysApply: false
+---
+
+## Rules to Follow for this Project
+Rules for generating clean, consistent, professional, and fail-proof code for
+a Kotlin Compose Multiplatform project using the compose-cupertino library.
+These rules ensure that all generated features are robust, platform-aware,
+and adhere to modern best practices.
+
+### General standards for all code generation in this project
+- Use **Kotlin Compose Multiplatform** idioms and patterns.
+- Prefer **compose-cupertino** components on iOS and proper Material/Jetpack components for Android.
+- Generate **clean, consistent, and readable** code with clear structure, proper indentation, and naming conventions.
+- Write code as if it were for a **production-grade app**: fail-proof, safe, and optimized for maintainability.
+- Include minimal but effective comments where clarity is needed.
+- Favor immutability, sealed classes, and state management best practices.
+- Always use **Platform detection** utilities to render correct UI components per platform.
+- Ensure no blocking calls on UI threads, and use coroutines properly.
+
+### Comments and Documentation:
+- Add KDoc for classes and functions if non-trivial.
+- Brief inline comments to clarify logic.
+
+### Codebase Structure
+- composeApp/commonMain: Shared UI/logic code between Android/iOS.
+- composeApp/androidMain: Android specific code.
+- composeApp/iosMain: iOS specific code.
+- iosApp: Contains only native iOS specific code, changes here are mostly not needed unless very necessary.
+
+### Codebase Conventions
+- Each page is structured like HomeRoot includes HomePage it might have HomeViewModel, HomePageState, HomeEffectHandler, HomeEvent, HomeEffect
+- Mostly the state should be present in ViewModel all communications must happen through Event/Effect from Page<>ViewModel
+- Group code by package: `presentation`, `data`, `domain`.
+- Keep composables **small, reusable, and stateless**; hoist state to ViewModels when needed.
+- Use `expect/actual` or platform-specific modules where required.
+- Follow Kotlin coding conventions, including naming (`camelCase` for variables, `PascalCase` for classes).
+- Default to `@Composable` for UI functions and favor `remember` or `rememberSaveable` for state.
+- If there exists a Adaptive component from that library use that Adaptive component for UI [https://github.com/alexzhirkevich/compose-cupertino/]
+- If such Adaptive component not exists (Not mostly the case) you can take example from CustomTextField.kt in this project.

@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.jackappsdev.leetcode.domain.model.User
 import com.jackappsdev.leetcode.domain.repository.UserRepository
 import com.jackappsdev.leetcode.presentation.base.EventDrivenViewModel
-import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupPageEffect
-import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupPageEvent
+import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupEffect
+import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupEvent
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,20 +16,25 @@ import kotlinx.coroutines.launch
 import org.koin.core.annotation.Factory
 
 @Factory
-class SetupPageViewModel(
+class SetupViewModel(
     private val userRepository: UserRepository
-) : ViewModel(), EventDrivenViewModel<SetupPageState, SetupPageEvent, SetupPageEffect> {
-    private val _state = MutableStateFlow(SetupPageState())
-    override val state: StateFlow<SetupPageState> = _state.asStateFlow()
+) : ViewModel(), EventDrivenViewModel<SetupState, SetupEvent, SetupEffect> {
 
-    private val _effect = Channel<SetupPageEffect>()
+    private val _state = MutableStateFlow(SetupState())
+    override val state: StateFlow<SetupState> = _state.asStateFlow()
+
+    private val _effect = Channel<SetupEffect>()
     override val effectFlow = _effect.receiveAsFlow()
 
     init {
+        onInit()
+    }
+
+    private fun onInit() {
         viewModelScope.launch {
             userRepository.getUser().collect { user ->
                 if (user != null) {
-                    _effect.send(SetupPageEffect.ReplaceToMain)
+                    _effect.send(SetupEffect.ReplaceToMain)
                 }
             }
         }
@@ -39,12 +44,12 @@ class SetupPageViewModel(
         _state.value = _state.value.copy(username = username)
     }
 
-    private suspend fun onContinueClick(): SetupPageEffect? {
+    private suspend fun onContinueClick(): SetupEffect? {
         if (_state.value.username.isNotBlank()) {
             _state.value = _state.value.copy(isLoading = true)
             return try {
                 userRepository.saveUser(User(_state.value.username))
-                SetupPageEffect.ReplaceToMain
+                SetupEffect.ReplaceToMain
             } finally {
                 _state.value = _state.value.copy(isLoading = false)
                 null
@@ -54,14 +59,14 @@ class SetupPageViewModel(
         }
     }
 
-    override fun onEvent(event: SetupPageEvent) {
+    override fun onEvent(event: SetupEvent) {
         viewModelScope.launch {
             val effect = when (event) {
-                is SetupPageEvent.OnUsernameChange -> onUsernameChange(event.username)
-                is SetupPageEvent.OnContinueClick -> onContinueClick()
+                is SetupEvent.OnUsernameChange -> onUsernameChange(event.username)
+                is SetupEvent.OnContinueClick -> onContinueClick()
             }
 
-            if (effect is SetupPageEffect) {
+            if (effect is SetupEffect) {
                 _effect.send(effect)
             }
         }

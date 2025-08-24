@@ -8,4 +8,9 @@ sealed class Routes(val route: String) {
     // Screen Routes
     data object Setup : Routes("setup")
     data object Main : Routes("main")
+    
+    // Main Tab Routes
+    data object Home : Routes("home")
+    data object Search : Routes("search")
+    data object Friends : Routes("friends")
 }

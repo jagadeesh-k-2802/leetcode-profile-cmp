@@ -12,7 +12,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun SetupRoot(
     navController: NavHostController
 ) {
-    val viewModel: SetupPageViewModel = koinViewModel()
+    val viewModel: SetupViewModel = koinViewModel()
     val state by viewModel.state.collectAsState()
     val effectHandler = remember { SetupEffectHandler(navController) }
 

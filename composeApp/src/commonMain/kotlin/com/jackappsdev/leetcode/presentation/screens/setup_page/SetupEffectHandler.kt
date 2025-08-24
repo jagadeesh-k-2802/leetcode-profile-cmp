@@ -2,14 +2,14 @@ package com.jackappsdev.leetcode.presentation.screens.setup_page
 
 import androidx.navigation.NavHostController
 import com.jackappsdev.leetcode.presentation.navigation.Routes
-import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupPageEffect
+import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupEffect
 
 class SetupEffectHandler(
     private val navController: NavHostController
 ) {
-    fun handleEffect(effect: SetupPageEffect) {
+    fun handleEffect(effect: SetupEffect) {
         when (effect) {
-            is SetupPageEffect.ReplaceToMain -> replaceToMain()
+            is SetupEffect.ReplaceToMain -> replaceToMain()
         }
     }
 

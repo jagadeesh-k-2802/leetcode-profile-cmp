@@ -18,7 +18,7 @@ actual class DataStoreFactory {
             error = null
         )
         return createDataStore(
-            producePath = { "$documentDirectory/settings.preferences_pb" }
+            producePath = { "${requireNotNull(documentDirectory).path}/settings.preferences_pb" }
         )
     }
 }

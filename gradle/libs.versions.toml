@@ -1,14 +1,15 @@
 [versions]
 agp = "8.12.0"
 androidx-activity = "1.10.1"
-androidx-lifecycle = "2.9.1"
+androidx-lifecycle = "2.9.0"
 androidx-navigation = "2.9.0-beta04"
+compose-cupertiono = "0.1.0-alpha04"
 coilComposeCore = "3.3.0"
 datastorePreferences = "1.1.7"
 ktor = "3.2.3"
 kotlinx-serialization = "1.9.0"
-composeHotReload = "1.0.0-beta04"
-composeMultiplatform = "1.8.2"
+composeHotReload = "1.0.0-beta05"
+composeMultiplatform = "1.9.0-beta03"
 ksp = "2.2.0-2.0.2"
 koin-core = "4.1.0"
 koin-annotations = "2.1.0"
@@ -42,6 +43,8 @@ coil = { module = "io.coil-kt.coil3:coil", version.ref = "coilComposeCore" }
 coil-compose-core = { module = "io.coil-kt.coil3:coil-compose-core", version.ref = "coilComposeCore" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilComposeCore" }
 coil-network-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coilComposeCore" }
+
+cupertino = { module = "io.github.alexzhirkevich:cupertino-adaptive", version.ref = "compose-cupertiono" }
 
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 

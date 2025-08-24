@@ -2,14 +2,20 @@ package com.jackappsdev.leetcode.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
-import androidx.compose.material3.lightColorScheme
-import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveTheme
+import io.github.alexzhirkevich.cupertino.adaptive.CupertinoThemeSpec
+import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
+import io.github.alexzhirkevich.cupertino.adaptive.MaterialThemeSpec
+import io.github.alexzhirkevich.cupertino.adaptive.Theme
+import io.github.alexzhirkevich.cupertino.theme.darkColorScheme as cupertinoDarkColorScheme
+import io.github.alexzhirkevich.cupertino.theme.lightColorScheme as cupertinoLightColorScheme
+import androidx.compose.material3.darkColorScheme as materialDarkColorScheme
+import androidx.compose.material3.lightColorScheme as materialLightColorScheme
 
-private val lightScheme = lightColorScheme(
+private val lightScheme = materialLightColorScheme(
     primary = primaryLight,
     onPrimary = onPrimaryLight,
     primaryContainer = primaryContainerLight,
@@ -47,7 +53,7 @@ private val lightScheme = lightColorScheme(
     surfaceContainerHighest = surfaceContainerHighestLight,
 )
 
-private val darkScheme = darkColorScheme(
+private val darkScheme = materialDarkColorScheme(
     primary = primaryDark,
     onPrimary = onPrimaryDark,
     primaryContainer = primaryContainerDark,
@@ -85,25 +91,36 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
+expect fun determineTheme(): Theme
+
+@OptIn(ExperimentalAdaptiveApi::class)
 @Composable
 fun LeetCodeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    theme: Theme = determineTheme(),
     content: @Composable() () -> Unit
 ) {
-    val colorScheme = when {
-        darkTheme -> darkScheme
-        else -> lightScheme
-    }
-
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = AppTypography,
-        content = content,
-        shapes = Shapes(
-            small = RoundedCornerShape(4.dp),
-            medium = RoundedCornerShape(10.dp),
-            large = RoundedCornerShape(10.dp),
-            extraLarge = RoundedCornerShape(10.dp)
-        )
+    AdaptiveTheme(
+        target = theme,
+        material = MaterialThemeSpec.Default(
+            colorScheme = when {
+                darkTheme -> darkScheme
+                else -> lightScheme
+            },
+            typography = AppTypography,
+            shapes = Shapes(
+                small = RoundedCornerShape(4.dp),
+                medium = RoundedCornerShape(10.dp),
+                large = RoundedCornerShape(10.dp),
+                extraLarge = RoundedCornerShape(10.dp)
+            )
+        ),
+        cupertino = CupertinoThemeSpec.Default(
+            colorScheme = when {
+                darkTheme -> cupertinoDarkColorScheme()
+                else -> cupertinoLightColorScheme()
+            }
+        ),
+        content = content
     )
 }

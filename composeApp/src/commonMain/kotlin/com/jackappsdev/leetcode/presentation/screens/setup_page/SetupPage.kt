@@ -8,19 +8,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupPageEvent
-import com.jackappsdev.leetcode.presentation.components.PrimaryButton
+import com.jackappsdev.leetcode.presentation.components.CustomTextField
+import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupEvent
+import com.jackappsdev.leetcode.presentation.components.CustomButton
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveCircularProgressIndicator
+import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
+import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 import leetcode.composeapp.generated.resources.Res
 import leetcode.composeapp.generated.resources.label_continue
 import leetcode.composeapp.generated.resources.label_enter_username
@@ -30,12 +30,13 @@ import leetcode.composeapp.generated.resources.text_welcome
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
+@OptIn(ExperimentalAdaptiveApi::class)
 @Composable
 fun SetupPage(
-    state: SetupPageState,
-    onEvent: (SetupPageEvent) -> Unit
+    state: SetupState,
+    onEvent: (SetupEvent) -> Unit
 ) {
-    Scaffold { contentPadding ->
+    AdaptiveScaffold { contentPadding ->
         Column(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -62,23 +63,22 @@ fun SetupPage(
             )
 
             Spacer(Modifier.height(48.dp))
-            OutlinedTextField(
+            CustomTextField(
                 value = state.username,
-                onValueChange = { onEvent(SetupPageEvent.OnUsernameChange(it)) },
+                onValueChange = { onEvent(SetupEvent.OnUsernameChange(it)) },
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text(text = stringResource(resource = Res.string.label_enter_username)) },
-                shape = RoundedCornerShape(10.dp),
-                enabled = !state.isLoading
+                label = stringResource(resource = Res.string.label_enter_username),
+                isEnabled = !state.isLoading
             )
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(24.dp))
 
             if (state.isLoading) {
-                CircularProgressIndicator()
+                AdaptiveCircularProgressIndicator()
             } else {
-                PrimaryButton(
+                CustomButton(
                     modifier = Modifier.fillMaxWidth(),
                     text = stringResource(resource = Res.string.label_continue),
-                    onClick = { onEvent(SetupPageEvent.OnContinueClick) },
+                    onClick = { onEvent(SetupEvent.OnContinueClick) },
                     enabled = state.username.isNotBlank()
                 )
             }
