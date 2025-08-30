@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jackappsdev.leetcode.presentation.theme.LeetCodeTheme
+import com.jackappsdev.leetcode.presentation.theme.spacingMd
 import io.github.alexzhirkevich.cupertino.CupertinoTextField
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveWidget
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
@@ -32,7 +33,7 @@ fun CustomTextField(
                 onValueChange = onValueChange,
                 modifier = modifier,
                 label = { Text(text = label) },
-                shape = RoundedCornerShape(10.dp),
+                shape = RoundedCornerShape(spacingMd.dp),
                 enabled = isEnabled,
                 isError = isError
             )

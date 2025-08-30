@@ -9,7 +9,35 @@
     <string name="text_search">Search</string>
     <string name="text_friends">Friends</string>
 
+    <!-- Home/Profile Card -->
+    <string name="welcome_back">Welcome back!</string>
+    <string name="cd_problems_solved">Problems Solved</string>
+    <string name="cd_ranking">Ranking</string>
+    <string name="label_problems">Problems</string>
+    <string name="label_ranking">Ranking</string>
+
+    <!-- Statistics Card -->
+    <string name="title_statistics">Statistics</string>
+    <string name="label_easy">Easy</string>
+    <string name="label_medium">Med</string>
+    <string name="label_hard">Hard</string>
+
     <!-- Common:Labels -->
     <string name="label_continue">Continue</string>
     <string name="text_error">Something Went Wrong!</string>
+
+    <!-- Activity / Contributions -->
+    <string name="title_activity_graph">Activity Graph</string>
+    <string name="month_jan">Jan</string>
+    <string name="month_feb">Feb</string>
+    <string name="month_mar">Mar</string>
+    <string name="month_apr">Apr</string>
+    <string name="month_may">May</string>
+    <string name="month_jun">Jun</string>
+    <string name="month_jul">Jul</string>
+    <string name="month_aug">Aug</string>
+    <string name="month_sep">Sep</string>
+    <string name="month_oct">Oct</string>
+    <string name="month_nov">Nov</string>
+    <string name="month_dec">Dec</string>
 </resources>

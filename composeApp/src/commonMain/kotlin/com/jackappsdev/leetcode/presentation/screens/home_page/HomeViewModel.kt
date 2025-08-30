@@ -2,7 +2,7 @@ package com.jackappsdev.leetcode.presentation.screens.home_page
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.jackappsdev.leetcode.domain.repository.LeetCodeRepository
+import com.jackappsdev.leetcode.domain.usecase.GetCombinedProfileUseCase
 import com.jackappsdev.leetcode.domain.repository.UserRepository
 import com.jackappsdev.leetcode.presentation.base.EventDrivenViewModel
 import com.jackappsdev.leetcode.presentation.screens.home_page.event.HomeEffect
@@ -19,7 +19,7 @@ import org.koin.core.annotation.Factory
 
 @Factory
 class HomeViewModel(
-    private val leetCodeRepository: LeetCodeRepository,
+    private val getCombinedProfile: GetCombinedProfileUseCase,
     private val userRepository: UserRepository
 ) : ViewModel(), EventDrivenViewModel<HomeState, HomeEvent, HomeEffect> {
 
@@ -37,7 +37,7 @@ class HomeViewModel(
         viewModelScope.launch {
             val username = userRepository.getUser().first()?.username ?: return@launch
 
-            leetCodeRepository.getProfile(username).collectLatest { result ->
+            getCombinedProfile(username).collectLatest { result ->
                 result.fold(
                     onSuccess = { profile ->
                         _state.value = _state.value.copy(

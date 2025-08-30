@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.jackappsdev.leetcode.presentation.components.CustomTextField
 import com.jackappsdev.leetcode.presentation.screens.setup_page.event.SetupEvent
 import com.jackappsdev.leetcode.presentation.components.CustomButton
+import com.jackappsdev.leetcode.presentation.theme.spacingLg
+import com.jackappsdev.leetcode.presentation.theme.spacingXl
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveCircularProgressIndicator
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveScaffold
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
@@ -42,7 +44,7 @@ fun SetupPage(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
                 .padding(contentPadding)
-                .padding(16.dp)
+                .padding(spacingLg.dp)
         ) {
             Spacer(Modifier.height(96.dp))
             Image(
@@ -56,7 +58,7 @@ fun SetupPage(
                 style = MaterialTheme.typography.titleLarge,
                 textAlign = TextAlign.Center
             )
-            Spacer(Modifier.height(16.dp))
+            Spacer(Modifier.height(spacingLg.dp))
             Text(
                 text = stringResource(Res.string.text_track_and_improve),
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -70,7 +72,7 @@ fun SetupPage(
                 label = stringResource(resource = Res.string.label_enter_username),
                 isEnabled = !state.isLoading
             )
-            Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(spacingXl.dp))
 
             if (state.isLoading) {
                 AdaptiveCircularProgressIndicator()

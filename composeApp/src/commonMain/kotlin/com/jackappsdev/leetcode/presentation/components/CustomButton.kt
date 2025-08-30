@@ -6,6 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jackappsdev.leetcode.presentation.theme.LeetCodeTheme
+import com.jackappsdev.leetcode.presentation.theme.spacingLg
+import com.jackappsdev.leetcode.presentation.theme.spacingXs
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveButton
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -25,7 +27,7 @@ fun CustomButton(
     ) {
         Text(
             text = text,
-            modifier = Modifier.padding(4.dp)
+            modifier = Modifier.padding(spacingXs.dp)
         )
     }
 }
@@ -38,7 +40,7 @@ fun PrimaryButtonPreview() {
             text = "Continue",
             onClick = { /* Do something */ },
             enabled = true,
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(spacingLg.dp)
         )
     }
 }

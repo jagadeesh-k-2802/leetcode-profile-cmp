@@ -83,6 +83,9 @@ kotlin {
             // Ktor
             implementation(libs.bundles.ktor.common)
 
+            // Date Time
+            implementation(libs.kotlinx.datetime)
+
             // Coil
             implementation(libs.coil.compose.core)
             implementation(libs.coil.compose)
