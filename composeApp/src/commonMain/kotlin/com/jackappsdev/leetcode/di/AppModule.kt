@@ -3,8 +3,10 @@ package com.jackappsdev.leetcode.di
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.jackappsdev.leetcode.data.repository.LeetCodeRepositoryImpl
+import com.jackappsdev.leetcode.data.repository.FriendsRepositoryImpl
 import com.jackappsdev.leetcode.data.repository.UserRepositoryImpl
 import com.jackappsdev.leetcode.domain.repository.LeetCodeRepository
+import com.jackappsdev.leetcode.domain.repository.FriendsRepository
 import com.jackappsdev.leetcode.domain.repository.UserRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.DefaultRequest
@@ -47,4 +49,7 @@ class AppModule {
 
     @Single
     fun provideLeetCodeRepository(impl: LeetCodeRepositoryImpl): LeetCodeRepository = impl
+
+    @Single
+    fun provideFriendsRepository(impl: FriendsRepositoryImpl): FriendsRepository = impl
 }

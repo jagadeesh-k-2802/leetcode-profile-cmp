@@ -29,9 +29,9 @@ import leetcode.composeapp.generated.resources.title_activity_graph
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ActivityGraphCard(
+internal fun ActivityGraphCard(
+    modifier: Modifier = Modifier,
     data: LeetCodeProfile,
-    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),

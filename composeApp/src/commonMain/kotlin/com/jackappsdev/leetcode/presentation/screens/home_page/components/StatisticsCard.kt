@@ -46,9 +46,9 @@ import leetcode.composeapp.generated.resources.title_statistics
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun StatisticsCard(
+internal fun StatisticsCard(
+    modifier: Modifier = Modifier,
     data: LeetCodeProfile,
-    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -86,12 +86,12 @@ fun StatisticsCard(
                     totalMedium = data.totalMedium,
                     hard = data.hardSolved,
                     totalHard = data.totalHard,
-                    modifier = Modifier.size(130.dp)
+                    modifier = Modifier.size(120.dp)
                 )
 
                 Spacer(modifier = Modifier.width(spacingXl.dp))
                 VerticalDivider()
-                Spacer(modifier = Modifier.width(spacingXl.dp))
+                Spacer(modifier = Modifier.width(spacingLg.dp))
 
                 Column(
                     modifier = Modifier.weight(1f),

@@ -20,26 +20,25 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalAdaptiveApi::class)
 @Composable
 fun MainBottomBar(
-    currentRoute: String,
-    onNavigate: (String) -> Unit = { },
+    currentRoute: Routes,
+    onNavigate: (Routes) -> Unit,
 ) {
     AdaptiveNavigationBar {
         AdaptiveNavigationBarItem(
-            selected = currentRoute == Routes.Home.route,
-            onClick = { onNavigate(Routes.Home.route) },
+            selected = currentRoute == Routes.Home,
+            onClick = { onNavigate(Routes.Home) },
             label = { Text(stringResource(Res.string.text_home)) },
             icon = { Icon(imageVector = AdaptiveIcons.Outlined.Home, contentDescription = null) }
         )
-
         AdaptiveNavigationBarItem(
-            selected = currentRoute == Routes.Search.route,
-            onClick = { onNavigate(Routes.Search.route) },
+            selected = currentRoute == Routes.Search,
+            onClick = { onNavigate(Routes.Search) },
             label = { Text(stringResource(Res.string.text_search)) },
             icon = { Icon(imageVector = AdaptiveIcons.Outlined.Search, contentDescription = null) }
         )
         AdaptiveNavigationBarItem(
-            selected = currentRoute == Routes.Friends.route,
-            onClick = { onNavigate(Routes.Friends.route) },
+            selected = currentRoute == Routes.Friends,
+            onClick = { onNavigate(Routes.Friends) },
             label = { Text(stringResource(Res.string.text_friends)) },
             icon = { Icon(imageVector = AdaptiveIcons.Outlined.Person, contentDescription = null) }
         )

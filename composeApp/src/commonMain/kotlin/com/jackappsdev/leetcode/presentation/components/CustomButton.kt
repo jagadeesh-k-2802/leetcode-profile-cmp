@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 import com.jackappsdev.leetcode.presentation.theme.LeetCodeTheme
 import com.jackappsdev.leetcode.presentation.theme.spacingLg
 import com.jackappsdev.leetcode.presentation.theme.spacingXs
+import com.jackappsdev.leetcode.presentation.theme.spacingZero
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveButton
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -18,6 +19,7 @@ fun CustomButton(
     modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
+    size: ButtonSize = ButtonSize.LARGE,
     enabled: Boolean = true,
 ) {
     AdaptiveButton(
@@ -27,9 +29,14 @@ fun CustomButton(
     ) {
         Text(
             text = text,
-            modifier = Modifier.padding(spacingXs.dp)
+            modifier = Modifier.padding(if (size == ButtonSize.LARGE) spacingXs.dp else spacingZero.dp)
         )
     }
+}
+
+enum class ButtonSize {
+    SMALL,
+    LARGE
 }
 
 @Preview

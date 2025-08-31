@@ -35,6 +35,7 @@ class HomeViewModel(
 
     private fun onInit() {
         viewModelScope.launch {
+            _state.value = _state.value.copy(isLoading = true, isError = false)
             val username = userRepository.getUser().first()?.username ?: return@launch
 
             getCombinedProfile(username).collectLatest { result ->
@@ -61,7 +62,7 @@ class HomeViewModel(
 
     override fun onEvent(event: HomeEvent) {
         when (event) {
-            is HomeEvent.RefreshProfile -> onInit()
+            is HomeEvent.OnRefresh -> onInit()
         }
     }
 }

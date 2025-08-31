@@ -8,14 +8,11 @@ import com.jackappsdev.leetcode.presentation.navigation.Routes
 import com.jackappsdev.leetcode.presentation.screens.setup_page.SetupRoot
 
 fun NavGraphBuilder.setupNavGraph(
-    navController: NavHostController
+    rootNavController: NavHostController
 ) {
-    navigation(
-        startDestination = Routes.Setup.route,
-        route = Routes.SetupGraph.route
-    ) {
-        composable(Routes.Setup.route) {
-            SetupRoot(navController)
+    navigation<Routes.SetupGraph>(startDestination = Routes.Setup) {
+        composable<Routes.Setup> {
+            SetupRoot(rootNavController)
         }
     }
 }

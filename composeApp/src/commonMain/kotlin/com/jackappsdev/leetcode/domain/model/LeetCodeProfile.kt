@@ -14,6 +14,7 @@ data class LeetCodeProfile(
     val solutionCount: Int,
     val skillTags: List<String>,
     val submissionCalendar: Map<String, Int> = emptyMap(),
+    val badges: List<String> = emptyList(),
     val totalSolved: Int,
     val totalQuestions: Int,
     val easySolved: Int,

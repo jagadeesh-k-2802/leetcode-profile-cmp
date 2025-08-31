@@ -43,9 +43,9 @@ import leetcode.composeapp.generated.resources.welcome_back
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun ProfileCard(
+internal fun ProfileCard(
+    modifier: Modifier = Modifier,
     data: LeetCodeProfile,
-    modifier: Modifier = Modifier
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),

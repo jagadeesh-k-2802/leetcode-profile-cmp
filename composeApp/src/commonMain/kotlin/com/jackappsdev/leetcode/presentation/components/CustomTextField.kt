@@ -8,7 +8,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.jackappsdev.leetcode.presentation.theme.LeetCodeTheme
 import com.jackappsdev.leetcode.presentation.theme.spacingMd
-import io.github.alexzhirkevich.cupertino.CupertinoTextField
+import io.github.alexzhirkevich.cupertino.CupertinoBorderedTextField
+import io.github.alexzhirkevich.cupertino.CupertinoSearchTextFieldDefaults
 import io.github.alexzhirkevich.cupertino.adaptive.AdaptiveWidget
 import io.github.alexzhirkevich.cupertino.adaptive.ExperimentalAdaptiveApi
 import leetcode.composeapp.generated.resources.Res
@@ -25,6 +26,9 @@ fun CustomTextField(
     label: String,
     isError: Boolean = false,
     isEnabled: Boolean = true,
+    leading: @Composable (() -> Unit)? = null,
+    trailing: @Composable (() -> Unit)? = null,
+    maxLines: Int = 1
 ) {
     AdaptiveWidget(
         material = {
@@ -35,17 +39,24 @@ fun CustomTextField(
                 label = { Text(text = label) },
                 shape = RoundedCornerShape(spacingMd.dp),
                 enabled = isEnabled,
-                isError = isError
+                leadingIcon = leading,
+                trailingIcon = trailing,
+                isError = isError,
+                maxLines = maxLines,
             )
         },
         cupertino = {
-            CupertinoTextField(
+            CupertinoBorderedTextField(
                 value = value,
                 onValueChange = onValueChange,
                 modifier = modifier,
                 enabled = isEnabled,
+                colors = CupertinoSearchTextFieldDefaults.colors(),
                 placeholder = { Text(text = label) },
+                leadingIcon = leading,
+                trailingIcon = trailing,
                 isError = isError,
+                maxLines = maxLines,
             )
         }
     )

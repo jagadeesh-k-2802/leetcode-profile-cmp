@@ -11,6 +11,7 @@ fun HomeRoot() {
     val state by viewModel.state.collectAsState()
 
     HomePage(
-        state = state
+        state = state,
+        onEvent = viewModel::onEvent
     )
 }

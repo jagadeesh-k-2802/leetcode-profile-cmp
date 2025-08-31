@@ -14,8 +14,8 @@ class SetupEffectHandler(
     }
 
     private fun replaceToMain() {
-        navController.navigate(Routes.Main.route) {
-            popUpTo(Routes.Setup.route) {
+        navController.navigate(Routes.Main) {
+            popUpTo(Routes.Setup) {
                 inclusive = true
             }
         }

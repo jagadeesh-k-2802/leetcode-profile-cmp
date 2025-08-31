@@ -16,18 +16,40 @@
     <string name="label_problems">Problems</string>
     <string name="label_ranking">Ranking</string>
 
+    <!-- SearchPage  -->
+    <string name="label_done">Done</string>
+
+    <!-- FriendsPage   -->
+    <string name="text_no_friends">No Friends</string>
+    <string name="label_add_friend">Add Friend</string>
+
+    <!-- FriendDetailPage  -->
+    <string name="text_friend">Friend</string>
+    <string name="text_delete_title">Delete Friend</string>
+    <string name="text_delete_message">Do you want to remove this username?</string>
+    <string name="text_no">No</string>
+    <string name="text_yes">Yes</string>
+    <string name="title_badges">Badges</string>
+
     <!-- Statistics Card -->
     <string name="title_statistics">Statistics</string>
+    <string name="title_problem_solving_stats">Problem Solving Stats</string>
+    <string name="label_total_solved">Total Solved</string>
     <string name="label_easy">Easy</string>
     <string name="label_medium">Med</string>
+    <string name="label_medium_full">Med</string>
     <string name="label_hard">Hard</string>
+    <string name="global_rank">Global Rank: #%1$s</string>
 
     <!-- Common:Labels -->
     <string name="label_continue">Continue</string>
-    <string name="text_error">Something Went Wrong!</string>
+    <string name="label_try_again">Try Again</string>
+    <string name="title_error">Error!</string>
+    <string name="text_error">Something went wrong.\nPlease try again.</string>
 
     <!-- Activity / Contributions -->
     <string name="title_activity_graph">Activity Graph</string>
+    <string name="title_activity_calendar">Activity Calendar</string>
     <string name="month_jan">Jan</string>
     <string name="month_feb">Feb</string>
     <string name="month_mar">Mar</string>

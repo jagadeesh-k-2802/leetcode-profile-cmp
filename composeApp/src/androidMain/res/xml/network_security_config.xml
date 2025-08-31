@@ -5,7 +5,7 @@
         <trust-anchors>
             <!-- Trust all system certificates -->
             <certificates src="system" />
-            <!-- Trust user-installed certificates (for debugging) -->
+            <!-- Trust user-installed certificates (for debugging purposes it's here) -->
             <certificates src="user" />
         </trust-anchors>
     </base-config>

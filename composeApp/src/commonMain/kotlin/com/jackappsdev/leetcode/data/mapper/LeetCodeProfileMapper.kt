@@ -1,5 +1,6 @@
 package com.jackappsdev.leetcode.data.mapper
 
+import com.jackappsdev.leetcode.constants.Constants.EMPTY_STRING
 import com.jackappsdev.leetcode.data.model.LeetCodeProfileResponse
 import com.jackappsdev.leetcode.domain.model.LeetCodeProfile
 
@@ -19,11 +20,11 @@ fun LeetCodeProfileResponse.toDomain(): LeetCodeProfile {
         ranking = ranking,
         reputation = reputation,
         avatarUrl = avatar,
-        githubUrl = gitHub ?: "",
-        linkedinUrl = linkedIN ?: "",
-        twitterUrl = twitter ?: "",
-        countryName = country ?: "",
-        aboutMe = about ?: "",
+        githubUrl = gitHub ?: EMPTY_STRING,
+        linkedinUrl = linkedIN ?: EMPTY_STRING,
+        twitterUrl = twitter ?: EMPTY_STRING,
+        countryName = country ?: EMPTY_STRING,
+        aboutMe = about ?: EMPTY_STRING,
         websites = website,
         solutionCount = 0,
         skillTags = skillTags

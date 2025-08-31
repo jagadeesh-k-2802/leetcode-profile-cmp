@@ -41,7 +41,7 @@ class SetupViewModel(
     }
 
     private fun onUsernameChange(username: String) {
-        _state.value = _state.value.copy(username = username)
+        _state.value = _state.value.copy(username = username, canSubmitData = username.isNotBlank())
     }
 
     private suspend fun onContinueClick(): SetupEffect? {

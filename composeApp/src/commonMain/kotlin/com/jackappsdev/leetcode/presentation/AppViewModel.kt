@@ -15,16 +15,16 @@ class AppViewModel(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    private val _startDestination = MutableStateFlow<String?>(null)
-    val startDestination: StateFlow<String?> = _startDestination.asStateFlow()
+    private val _startDestination = MutableStateFlow<Routes?>(null)
+    val startDestination: StateFlow<Routes?> = _startDestination.asStateFlow()
 
     init {
         viewModelScope.launch {
             userRepository.getUser().collect { user ->
                 _startDestination.value = if (user != null) {
-                    Routes.MainGraph.route
+                    Routes.MainGraph
                 } else {
-                    Routes.SetupGraph.route
+                    Routes.SetupGraph
                 }
             }
         }

@@ -23,7 +23,7 @@ fun AppNavGraph(
             startDestination = destination
         ) {
             setupNavGraph(navController)
-            mainNavGraph()
+            mainNavGraph(navController)
         }
     }
 }
