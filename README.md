@@ -1,6 +1,6 @@
 # LeetCode Profile (CMP) 📊
 
-<img width="750" height="628" src="https://github.com/user-attachments/assets/322ac2b7-8956-41f9-9028-32a7caabb3a7" />
+<img width="750" height="628" src="https://github.com/user-attachments/assets/68760279-5482-4eaa-83b4-cad8b5f4a32e" />
 
 ## Technologies ⚙️
 
